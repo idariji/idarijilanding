@@ -19,17 +19,44 @@ export default function ContactPage() {
     message: ''
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(
-      `New Inquiry from ${formData.name}${formData.service ? ` — ${formData.service}` : ''}`
-    )
-    const body = encodeURIComponent(
-      `Hello Idariji Concept,\n\nYou have a new inquiry:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\nCompany: ${formData.company || 'Not provided'}\nService Needed: ${formData.service}\nBudget: ${formData.budget || 'Not specified'}\nTimeline: ${formData.timeline || 'Not specified'}\n\nMessage:\n${formData.message}`
-    )
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`
-    setIsSubmitted(true)
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `New Inquiry from ${formData.name}${formData.service ? ` — ${formData.service}` : ''}`,
+          from_name: 'Idariji Concept Website',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          company: formData.company || 'Not provided',
+          service: formData.service,
+          budget: formData.budget || 'Not specified',
+          timeline: formData.timeline || 'Not specified',
+          message: formData.message,
+        }),
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setIsSubmitted(true)
+      } else {
+        setError('Something went wrong. Please try again or contact us on WhatsApp.')
+      }
+    } catch {
+      setError('Something went wrong. Please try again or contact us on WhatsApp.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -58,8 +85,8 @@ export default function ContactPage() {
           {isSubmitted ? (
             <div className="text-center py-16">
               <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Message Ready to Send!</h2>
-              <p className="text-lg text-gray-600 mb-4">Your email client has been opened with your inquiry pre-filled. Just hit send!</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Message Sent!</h2>
+              <p className="text-lg text-gray-600 mb-4">Thank you! We've received your inquiry and will get back to you within 24 hours.</p>
               <p className="text-gray-500">Prefer WhatsApp? <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:underline font-medium">Chat us directly</a></p>
               <button onClick={() => setIsSubmitted(false)} className="mt-6 text-sm text-gray-500 hover:text-gray-700 underline">Send another message</button>
             </div>
@@ -206,13 +233,18 @@ export default function ContactPage() {
                 />
               </div>
               
+              {error && (
+                <p className="text-center text-red-500 text-sm -mt-4">{error}</p>
+              )}
+
               <div className="text-center">
                 <button
                   type="submit"
-                  className="group bg-[#FF6B00] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#e05f00] transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 flex items-center gap-2 mx-auto"
+                  disabled={isLoading}
+                  className="group bg-[#FF6B00] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#e05f00] transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 flex items-center gap-2 mx-auto disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  <span>Send Message</span>
-                  <Send size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                  <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
+                  <Send size={20} className={isLoading ? 'animate-pulse' : 'group-hover:translate-x-1 transition-transform duration-300'} />
                 </button>
               </div>
             </form>

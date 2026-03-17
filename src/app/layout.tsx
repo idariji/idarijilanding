@@ -44,6 +44,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Idariji Concept" }],
   creator: "Idariji Concept",
   publisher: "Idariji Concept",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   openGraph: {
     type: "website",

@@ -445,13 +445,26 @@ function NewsletterSection() {
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [msg, setMsg] = useState("")
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); setMsg("Please enter a valid email address."); return }
-    const s = encodeURIComponent("Newsletter Subscription Request")
-    const b = encodeURIComponent(`Hello,\n\nPlease add ${email} to the Idariji Concept newsletter.\n\nThank you!`)
-    window.location.href = `mailto:${siteConfig.email}?subject=${s}&body=${b}`
-    setStatus("success"); setMsg("Opening your email client — just hit send!"); setEmail("")
+    setStatus("idle")
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `Newsletter Subscription — ${email}`,
+          from_name: 'Idariji Concept Newsletter',
+          email,
+          message: `New newsletter subscription request from: ${email}`,
+        }),
+      })
+      const result = await response.json()
+      if (result.success) { setStatus("success"); setMsg("You're subscribed! Welcome aboard."); setEmail("") }
+      else { setStatus("error"); setMsg("Something went wrong. Please try again.") }
+    } catch { setStatus("error"); setMsg("Something went wrong. Please try again.") }
   }
   return (
     <section className="relative py-20 sm:py-28 lg:py-32 bg-cover bg-center bg-no-repeat overflow-hidden" style={{ backgroundImage: 'url("/Newsletter.jpg")' }}>

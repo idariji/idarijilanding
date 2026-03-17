@@ -7,7 +7,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
-import { siteConfig } from '../../lib/siteConfig'
+import CareersForm from '../../components/CareersForm'
 
 export const metadata: Metadata = {
   title: 'Careers — Idariji Concept',
@@ -128,7 +128,7 @@ export default function CareersPage() {
                     </div>
                   </div>
                   <a
-                    href={`mailto:${siteConfig.email}?subject=Application: ${encodeURIComponent(job.title)}&body=${encodeURIComponent(`Hi,\n\nI'd like to apply for the ${job.title} position at Idariji Concept.\n\n[Please attach your CV and portfolio]\n\nBest regards,`)}`}
+                    href="#apply"
                     className="flex-shrink-0 inline-flex items-center gap-2 bg-[#FF6B00] hover:bg-[#e05f00] text-white px-5 py-2.5 rounded-full font-medium transition-colors text-sm"
                   >
                     Apply Now <ArrowRight size={16} />
@@ -150,18 +150,13 @@ export default function CareersPage() {
             ))}
           </div>
 
-          {/* Open application */}
-          <div className="mt-12 bg-gradient-to-br from-[#001f3f] to-[#003366] rounded-2xl p-8 text-center text-white">
-            <h3 className="text-2xl font-bold mb-3">Don't see a fit?</h3>
-            <p className="text-white/80 mb-6">
-              We're always open to hearing from talented people. Send us your CV and tell us how you'd contribute to Idariji Concept.
+          {/* Application Form */}
+          <div id="apply" className="mt-12 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <h3 className="text-2xl font-bold text-[#001F3F] mb-2">Apply Now</h3>
+            <p className="text-gray-600 mb-8">
+              Fill in the form below and we'll get back to you within 3–5 business days.
             </p>
-            <a
-              href={`mailto:${siteConfig.email}?subject=Open Application&body=${encodeURIComponent('Hi,\n\nI\'d like to be considered for future opportunities at Idariji Concept.\n\n[Tell us about yourself and attach your CV]\n\nBest regards,')}`}
-              className="inline-flex items-center gap-2 bg-[#FF6B00] hover:bg-[#e05f00] text-white px-6 py-3 rounded-full font-medium transition-colors"
-            >
-              Send Open Application <ArrowRight size={18} />
-            </a>
+            <CareersForm />
           </div>
         </div>
       </div>

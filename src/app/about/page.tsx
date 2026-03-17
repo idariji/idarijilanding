@@ -115,11 +115,13 @@ export default function AboutPage() {
           
           <div className="py-16">
             <h2 className="text-3xl font-bold mb-12 text-center text-[#001F3F]">Meet Our Innovative Team</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
               {[
                 { name: "Damilare Adebisi", role: "Head of Operations", image: "/team-member-1.png" },
                 { name: "Nwaka Daniel Damilola", role: "Creative Lead", image: "/team-member-2.png" },
-                { name: "Team Member 3", role: "Position Title" }
+                { name: "Abdulquadry Labibat Damilola", role: "Head of Customer Service & Acquisition", image: "/Team Member 3.jpeg" },
+                { name: "Olayemi Habeeb Olawale", role: "Head of Digital Products", image: "/Team Member 4.jpeg" },
+                { name: "Suebat Aderibigbe", role: "Head of Admin & Communications", image: "/Team Member 5.jpeg" }
               ].map((member, index) => (
                 <div key={index} className={`group rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-105 ${member.image ? 'bg-orange-500' : 'bg-[#003366]'}`}>
                   <div className="w-full h-[340px] bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">

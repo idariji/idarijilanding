@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { ArrowRight, Mail, CheckCircle2, XCircle } from 'lucide-react'
-import { siteConfig } from '../lib/siteConfig'
 
 export default function Newsletter() {
   const [email, setEmail] = useState("")
@@ -13,7 +12,7 @@ export default function Newsletter() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!email.trim()) {
@@ -27,17 +26,31 @@ export default function Newsletter() {
       return
     }
 
-    const subject = encodeURIComponent("Newsletter Subscription Request")
-    const body = encodeURIComponent(
-      `Hello,\n\nPlease add ${email} to the Idariji Concept newsletter.\n\nThank you!`
-    )
-    window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`
+    setSubscription({ status: "loading", message: "" })
 
-    setSubscription({
-      status: "success",
-      message: "Your email client is opening — just send it to subscribe!",
-    })
-    setEmail("")
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `Newsletter Subscription — ${email}`,
+          from_name: 'Idariji Concept Newsletter',
+          email,
+          message: `New newsletter subscription request from: ${email}`,
+        }),
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setSubscription({ status: "success", message: "You're subscribed! Welcome aboard." })
+        setEmail("")
+      } else {
+        setSubscription({ status: "error", message: "Something went wrong. Please try again." })
+      }
+    } catch {
+      setSubscription({ status: "error", message: "Something went wrong. Please try again." })
+    }
   }
 
   return (

@@ -24,6 +24,8 @@ interface SanityPost {
   body?: any[]
 }
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const params: { id: string }[] = fallbackBlogPosts.map((p) => ({ id: p.id }))
 

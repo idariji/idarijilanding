@@ -100,7 +100,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="h-4 w-4 text-orange-400 mt-1 flex-shrink-0" />
                 <div className="text-xs sm:text-sm text-gray-300">
-                  <a href={`mailto:${siteConfig.email}`} className="hover:text-white transition-colors">{siteConfig.email}</a>
+                  <a href="mailto:hello@idarijiconcept.ng" className="hover:text-white transition-colors">hello@idarijiconcept.ng</a>
                 </div>
               </div>
             </div>

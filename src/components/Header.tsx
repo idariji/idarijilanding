@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { siteConfig } from '../lib/siteConfig'
 
 const navLinks = [
   { num: '01', name: 'About', href: '/about' },
@@ -58,7 +59,7 @@ export default function Header() {
 
           <div className="mob-cta pt-8">
             <a
-              href="https://forms.gle/D2WXs3S4NDYZovpf6"
+              href={siteConfig.consultationForm}
               target="_blank"
               rel="noopener noreferrer"
               onClick={close}
@@ -136,7 +137,7 @@ export default function Header() {
                 </Link>
               ))}
               <a
-                href="https://forms.gle/D2WXs3S4NDYZovpf6"
+                href={siteConfig.consultationForm}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-shine font-semibold rounded-full transition-all duration-300 hover:scale-105 active:scale-95"

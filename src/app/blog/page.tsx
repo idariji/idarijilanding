@@ -1,5 +1,11 @@
+import type { Metadata } from 'next'
 import React from 'react'
 import { Calendar, User, ArrowRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Insights, branding strategies, and business growth tips from the Idariji Concept team. Stay informed and inspired.',
+}
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'

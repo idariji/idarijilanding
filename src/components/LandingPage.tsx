@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 import Header from "./Header"
 import Footer from "./Footer"
+import BookingModal from "./BookingModal"
 import { siteConfig } from "../lib/siteConfig"
 
 // ─── Scroll Progress ──────────────────────────────────────────────────────
@@ -61,6 +62,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
 
 // ─── Hero Section ─────────────────────────────────────────────────────────
 function HeroSection() {
+  const [bookingOpen, setBookingOpen] = useState(false)
   const logos = [
     { src: "/logos/foodlolo.png", name: "Foodlolo" },
     { src: "/logos/KAF_Logo_Side_Text_PNG.png", name: "KAF" },
@@ -92,26 +94,25 @@ function HeroSection() {
           {/* Left */}
           <div>
             <div style={{ animation: "fadeInUp 0.8s ease 0.2s both" }}>
-              <h2 className="font-display font-bold text-white leading-[1.03] mb-6 sm:mb-8" style={{ fontSize: "clamp(2.6rem, 7.5vw, 6.5rem)" }}>
-                Africa's Leading<br />
-                <span className="font-display italic text-[#FF6B00]">Branding & Marketing</span><br />
-                Agency.
+              <span className="inline-block text-[#FF9A40] text-xs font-bold tracking-[0.3em] uppercase mb-5">Lagos · Ibadan · Nigeria</span>
+              <h2 className="font-display font-bold text-white leading-[1.08] mb-6 sm:mb-8" style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)" }}>
+                We build the brands<br />
+                <span className="font-display italic text-[#FF6B00]">Nigerians notice.</span>
               </h2>
             </div>
             <div style={{ animation: "fadeInUp 0.7s ease 0.38s both" }}>
-              <p className="text-white/55 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 sm:mb-10 max-w-lg">
-                We help businesses across Africa build powerful brand identities, run effective digital
-                marketing campaigns, and develop scalable systems that drive measurable growth —
-                from Lagos and Ibadan to the world.
+              <p className="text-white/55 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-lg">
+                Specialist branding and marketing for Nigerian hospitality, food &amp; beverage, and growth-stage brands. 6+ years. 80+ projects. Lagos and Ibadan.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ animation: "fadeInUp 0.7s ease 0.52s both" }}>
-              <a href="/contact" className="btn-shine group inline-flex items-center justify-center gap-3 bg-[#FF6B00] text-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base shadow-orange-glow hover:shadow-orange-glow-lg hover:bg-[#e05f00] transition-all duration-300">
-                Start Your Project
+              <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+              <button onClick={() => setBookingOpen(true)} className="btn-shine group inline-flex items-center justify-center gap-3 bg-[#FF6B00] text-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base shadow-orange-glow hover:shadow-orange-glow-lg hover:bg-[#e05f00] transition-all duration-300">
+                Book a Free Strategy Call
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
-              </a>
+              </button>
               <a href="/portfolio" className="group inline-flex items-center justify-center gap-3 text-white/75 hover:text-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base border border-white/15 hover:border-white/30 transition-all duration-300" style={{ background: "rgba(255,255,255,0.05)" }}>
-                View Our Work
+                See Our Work
                 <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
               </a>
             </div>
@@ -121,16 +122,16 @@ function HeroSection() {
           <div style={{ animation: "fadeInUp 0.8s ease 0.35s both" }}>
             <div className="grid grid-cols-2 gap-3 mb-3">
               {[
-                { target: 50, suffix: "+", label: "Projects Delivered" },
-                { target: 98, suffix: "%", label: "Client Satisfaction" },
+                { target: 80, suffix: "+", label: "Projects Delivered" },
+                { target: 95, suffix: "%+", label: "Client Satisfaction" },
                 { target: 6, suffix: "+", label: "Years Experience" },
                 { target: 12, suffix: "+", label: "Industries Served" },
               ].map((stat, i) => (
-                <div key={i} className="rounded-xl sm:rounded-2xl p-4 sm:p-5 text-center border border-white/10" style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
-                  <div className="font-display font-bold text-white leading-none mb-1" style={{ fontSize: "clamp(1.7rem, 3.5vw, 2.5rem)" }}>
+                <div key={i} className="rounded-xl sm:rounded-2xl p-3 sm:p-5 text-center border border-white/10" style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(12px)" }}>
+                  <div className="font-display font-bold text-white leading-none mb-1" style={{ fontSize: "clamp(1.3rem, 4.5vw, 2.5rem)" }}>
                     <StatCounter target={stat.target} suffix={stat.suffix} />
                   </div>
-                  <div className="text-white/40 text-[11px] sm:text-xs font-medium">{stat.label}</div>
+                  <div className="text-white/40 text-[10px] sm:text-xs font-medium leading-tight">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -140,7 +141,14 @@ function HeroSection() {
               <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
                 {logos.map((logo, i) => (
                   <div key={i} className="w-12 sm:w-14 h-8 sm:h-9 flex items-center justify-center flex-shrink-0">
-                    <img src={logo.src} alt={logo.name} className="max-w-full max-h-full object-contain opacity-55 hover:opacity-90 transition-opacity duration-300" />
+                    <img
+                      src={logo.src}
+                      alt={logo.name}
+                      className="max-w-full max-h-full object-contain transition-opacity duration-300"
+                      style={{ filter: "brightness(0) invert(1)", opacity: 0.55 }}
+                      onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+                      onMouseLeave={e => (e.currentTarget.style.opacity = "0.55")}
+                    />
                   </div>
                 ))}
                 <span className="text-white/25 text-[10px] sm:text-xs font-medium flex-shrink-0 ml-auto">+8 more</span>
@@ -161,60 +169,121 @@ function HeroSection() {
   )
 }
 
-// ─── Services Section ─────────────────────────────────────────────────────
-const services = [
-  { icon: Users, num: "01", title: "Business Operations", description: "We streamline your processes and structure systems for efficiency, productivity, and sustainable growth.", href: "/services/business-operations" },
-  { icon: Palette, num: "02", title: "Product Branding", description: "From concept to identity, we craft brands that communicate value, connect emotionally, and stand apart.", href: "/services/product-branding" },
-  { icon: TrendingUp, num: "03", title: "Sales & Marketing", description: "Data-driven campaigns that attract, engage, and convert — turning your visibility into consistent revenue.", href: "/services/sales-marketing" },
-  { icon: Globe, num: "04", title: "Digital Development", description: "Websites, apps, and digital experiences that enhance your customer journey and business performance.", href: "/services/digital-development" },
-  { icon: Shield, num: "05", title: "Hospitality Management", description: "We help hospitality brands optimize operations, elevate guest experience, and increase bookings.", href: "/services/hospitality-management" },
-  { icon: Award, num: "06", title: "Printing & Promotion", description: "High-quality prints and creative promotional strategies that bring your brand to life at every touchpoint.", href: "/services/printing-promotion" },
+// ─── Verticals Section ────────────────────────────────────────────────────
+const verticals = [
+  {
+    tag: "Primary",
+    title: "For Hotels",
+    headline: "Direct bookings. Better rooms. A brand guests remember.",
+    description: "Brand strategy, direct-booking websites, photography, and marketing engines for Nigerian boutique hotels, serviced apartments, and event centres.",
+    bullets: ["Direct booking website builds", "Social media content & ads", "Hotel visibility audits", "Corporate sales decks"],
+    href: "/hotels",
+    accent: "#C97A3A",
+    bg: "linear-gradient(135deg, #1a0e06 0%, #2d1a0a 100%)",
+    imageBg: "rgba(201,122,58,0.08)",
+    pill: "Hospitality",
+  },
+  {
+    tag: "Active",
+    title: "For Food Brands",
+    headline: "Your product deserves to stand out on the shelf — and on Chowdeck.",
+    description: "Brand identity, packaging design, and delivery-app optimisation for Nigerian food, beverage, and snack brands ready to scale.",
+    bullets: ["Packaging design (NAFDAC-ready)", "Brand identity systems", "Delivery app optimisation", "Shelf & Instagram presence"],
+    href: "/food-brands",
+    accent: "#E8472A",
+    bg: "linear-gradient(135deg, #1a0602 0%, #2d0f08 100%)",
+    imageBg: "rgba(232,71,42,0.08)",
+    pill: "Food & Beverage",
+  },
+  {
+    tag: "Coming Q4 2026",
+    title: "For Startups",
+    headline: "Your seed round didn't buy another gradient site.",
+    description: "Brand strategy, website rebuilds, and fractional growth teams for seed to Series A Nigerian startups who need to convert and raise.",
+    bullets: ["Positioning & messaging", "Next.js marketing sites", "Design systems", "Founder LinkedIn programs"],
+    href: "/startups",
+    accent: "#4F46E5",
+    bg: "linear-gradient(135deg, #06060f 0%, #0d0d20 100%)",
+    imageBg: "rgba(79,70,229,0.08)",
+    pill: "Tech Startups",
+  },
 ]
 
-function ServicesSection() {
+function VerticalsSection() {
   return (
     <section className="py-20 sm:py-28 lg:py-32 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-12 sm:mb-16 pb-7 sm:pb-8 border-b border-gray-200">
-          <div>
-            <span className="text-[#FF6B00] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">What We Do</span>
-            <h2 className="font-display font-bold text-[#0D0D0D] leading-tight" style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}>
-              Services Built for<br />
-              <span className="font-display italic text-[#FF6B00]">Real Results</span>
-            </h2>
-          </div>
-          <a href="/services" className="group inline-flex items-center gap-2 text-sm font-semibold text-[#0D0D0D] hover:text-[#FF6B00] transition-colors duration-300 flex-shrink-0">
-            View all services <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+        <Reveal className="mb-12 sm:mb-16">
+          <span className="text-[#FF6B00] text-xs font-bold tracking-[0.3em] uppercase mb-3 block">Who We Serve</span>
+          <h2 className="font-display font-bold text-[#0D0D0D] leading-tight" style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}>
+            Specialist teams for<br />
+            <span className="font-display italic text-[#FF6B00]">specific industries</span>
+          </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
-          {services.map((s, i) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6 mb-8">
+          {verticals.map((v, i) => (
             <a
               key={i}
-              href={s.href}
-              className="group relative bg-white rounded-2xl p-7 sm:p-8 border border-gray-100 hover:border-[#FF6B00]/25 overflow-hidden block"
+              href={v.href}
+              className="group relative rounded-2xl overflow-hidden block"
               style={{
-                boxShadow: "0 2px 12px rgba(0,0,0,0.05), 0 8px 28px rgba(0,0,0,0.04)",
-                animation: `fadeInUp 0.6s ease ${0.05 + i * 0.08}s both`,
-                transition: "box-shadow 0.35s ease, border-color 0.3s ease, transform 0.35s cubic-bezier(0.4,0,0.2,1)",
+                background: v.bg,
+                animation: `fadeInUp 0.6s ease ${0.05 + i * 0.1}s both`,
+                transition: "transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
               }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = "0 8px 40px rgba(0,0,0,0.1), 0 24px 60px rgba(0,0,0,0.06)"; el.style.transform = "translateY(-5px)" }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.boxShadow = "0 2px 12px rgba(0,0,0,0.05), 0 8px 28px rgba(0,0,0,0.04)"; el.style.transform = "translateY(0)" }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = "translateY(-6px)"; el.style.boxShadow = "0 16px 48px rgba(0,0,0,0.28)" }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = "translateY(0)"; el.style.boxShadow = "0 4px 24px rgba(0,0,0,0.18)" }}
             >
-              <span className="absolute top-5 right-6 font-display font-bold text-gray-100 group-hover:text-[#FF6B00]/15 transition-colors duration-300 leading-none select-none" style={{ fontSize: "2.8rem" }}>
-                {s.num}
-              </span>
-              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300" style={{ background: "rgba(255,107,0,0.08)" }}>
-                <s.icon size={20} className="text-[#FF6B00]" />
+              {/* Accent glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: `radial-gradient(circle, ${v.accent}22 0%, transparent 70%)`, transform: "translate(30%, -30%)" }} />
+
+              <div className="relative z-10 p-6 sm:p-8 flex flex-col h-full min-h-[300px] sm:min-h-[400px]">
+                {/* Tags row */}
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border" style={{ color: v.accent, borderColor: `${v.accent}40`, background: `${v.accent}12` }}>{v.pill}</span>
+                  {v.tag !== "Active" && (
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/30 border border-white/10">{v.tag}</span>
+                  )}
+                </div>
+
+                <h3 className="font-display font-bold text-white text-2xl sm:text-3xl mb-3 leading-tight">{v.title}</h3>
+                <p className="text-white/45 text-xs font-bold uppercase tracking-widest mb-3 font-sans" style={{ color: v.accent }}>{v.headline}</p>
+                <p className="text-white/50 text-sm leading-relaxed mb-6">{v.description}</p>
+
+                <ul className="space-y-2 mb-8 flex-1">
+                  {v.bullets.map((b, bi) => (
+                    <li key={bi} className="flex items-center gap-2 text-white/60 text-sm">
+                      <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: v.accent }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex items-center gap-2 font-bold text-sm mt-auto group-hover:gap-3 transition-all duration-300" style={{ color: v.accent }}>
+                  Learn more <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
               </div>
-              <h3 className="font-display font-semibold text-[#0D0D0D] text-lg sm:text-xl mb-2.5 group-hover:text-[#001F3F] transition-colors duration-300">{s.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-5">{s.description}</p>
-              <div className="flex items-center gap-1.5 text-[#FF6B00] text-xs font-bold">Learn more <ArrowUpRight size={11} /></div>
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF6B00] scale-x-0 group-hover:scale-x-100 transition-transform duration-350 origin-left" />
+
+              {/* Bottom accent bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" style={{ background: v.accent }} />
             </a>
           ))}
         </div>
+
+        {/* Also serving strip */}
+        <Reveal>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 rounded-2xl border border-gray-200 bg-white" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+            <p className="text-gray-500 text-sm">
+              <span className="text-[#0D0D0D] font-semibold">Also serving:</span>{" "}
+              Corporate Communications, Fashion & Lifestyle, Industrial & Oil/Gas
+            </p>
+            <a href="/services" className="group inline-flex items-center gap-1.5 text-[#FF6B00] text-sm font-bold flex-shrink-0 hover:gap-2.5 transition-all duration-300">
+              View all services <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -359,13 +428,20 @@ function ClientLogosSection() {
 }
 
 // ─── Testimonials ─────────────────────────────────────────────────────────
+const industryColors: Record<string, string> = {
+  "F&B": "#E8472A",
+  "Hospitality": "#C97A3A",
+  "Fashion": "#9333EA",
+  "Industrial": "#0891B2",
+}
+
 const testimonials = [
-  { name: "Nikkey's Juice", role: "Ibadan, Nigeria", service: "Printing & Branding", content: "Our product packaging and print materials have never looked this good. Idariji Concept brought our vision to life with quality designs and professional printing that made Nikkey's Juice stand out on the shelves.", rating: 5 },
-  { name: "KKLargesse", role: "Colchester, UK", service: "Brand Identity", content: "Idariji Concept completely transformed how we present our brand. Their creative direction gave KKLargesse a refined identity that truly resonates with our audience.", rating: 5 },
-  { name: "Fila Idan", role: "Uyo, Nigeria", service: "Brand Strategy", content: "The team helped us define who we are as a brand. Today, Fila Idan has a bold, consistent identity that perfectly captures our essence.", rating: 5 },
-  { name: "NAF Conference Centre", role: "Abuja, Nigeria", service: "Hospitality Marketing", content: "Idariji Concept elevated our hotel's visibility with a smart marketing approach that truly drives bookings. Their expertise has positioned us as a top choice for guests.", rating: 5 },
-  { name: "Trois Ore Residence", role: "Ibadan, Nigeria", service: "Digital Marketing", content: "Our social media presence got a complete upgrade. Idariji Concept's creative designs and strategy now make Trois Ore Residence stand out beautifully online.", rating: 5 },
-  { name: "Netis Group", role: "Lagos, Nigeria", service: "Print Design", content: "From design to delivery, Idariji Concept handled our print materials with precision and style. Their attention to detail made our brand look truly premium.", rating: 5 },
+  { name: "Nikkey's Juice", role: "Ibadan, Nigeria", service: "Printing & Branding", industry: "F&B", content: "Our product packaging and print materials have never looked this good. Idariji Concept brought our vision to life with quality designs and professional printing that made Nikkey's Juice stand out on the shelves.", rating: 5 },
+  { name: "KKLargesse", role: "Colchester, UK", service: "Brand Identity", industry: "F&B", content: "Idariji Concept completely transformed how we present our brand. Their creative direction gave KKLargesse a refined identity that truly resonates with our audience.", rating: 5 },
+  { name: "Fila Idan", role: "Uyo, Nigeria", service: "Brand Strategy", industry: "Fashion", content: "The team helped us define who we are as a brand. Today, Fila Idan has a bold, consistent identity that perfectly captures our essence.", rating: 5 },
+  { name: "NAF Conference Centre", role: "Abuja, Nigeria", service: "Hospitality Marketing", industry: "Hospitality", content: "Idariji Concept elevated our hotel's visibility with a smart marketing approach that truly drives bookings. Their expertise has positioned us as a top choice for guests.", rating: 5 },
+  { name: "Trois Ore Residence", role: "Ibadan, Nigeria", service: "Digital Marketing", industry: "Hospitality", content: "Our social media presence got a complete upgrade. Idariji Concept's creative designs and strategy now make Trois Ore Residence stand out beautifully online.", rating: 5 },
+  { name: "Netis Group", role: "Lagos, Nigeria", service: "Print Design", industry: "Industrial", content: "From design to delivery, Idariji Concept handled our print materials with precision and style. Their attention to detail made our brand look truly premium.", rating: 5 },
 ]
 
 function TestimonialsSection() {
@@ -386,24 +462,32 @@ function TestimonialsSection() {
       </div>
       <div className="marquee-mask">
         <div className="flex w-max gap-4 sm:gap-5 pb-2" style={{ animation: "marquee 40s linear infinite" }}>
-          {[...testimonials, ...testimonials].map((t, i) => (
-            <div key={i} className="flex-shrink-0 w-[300px] sm:w-[340px] bg-[#FAF8F5] rounded-2xl p-6 sm:p-7 border border-gray-100" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
-              <div className="flex gap-0.5 mb-4">
-                {[...Array(t.rating)].map((_, si) => <Star key={si} size={13} className="text-[#FF6B00] fill-[#FF6B00]" />)}
-              </div>
-              <span className="font-display text-4xl text-[#FF6B00]/15 leading-none font-bold block -mb-2">&ldquo;</span>
-              <p className="text-[#333] text-sm leading-[1.85] mb-5">{t.content}</p>
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm text-white" style={{ background: "linear-gradient(135deg, #001F3F, #003d87)" }}>
-                  {t.name.charAt(0)}
+          {[...testimonials, ...testimonials].map((t, i) => {
+            const accentColor = industryColors[t.industry] ?? "#FF6B00"
+            return (
+              <div key={i} className="flex-shrink-0 w-[300px] sm:w-[340px] bg-[#FAF8F5] rounded-2xl p-6 sm:p-7 border border-gray-100" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex gap-0.5">
+                    {[...Array(t.rating)].map((_, si) => <Star key={si} size={13} className="text-[#FF6B00] fill-[#FF6B00]" />)}
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border" style={{ color: accentColor, borderColor: `${accentColor}40`, background: `${accentColor}10` }}>
+                    {t.industry}
+                  </span>
                 </div>
-                <div>
-                  <p className="font-semibold text-[#0D0D0D] text-sm">{t.name}</p>
-                  <p className="text-gray-400 text-xs">{t.role} · {t.service}</p>
+                <span className="font-display text-4xl text-[#FF6B00]/15 leading-none font-bold block -mb-2">&ldquo;</span>
+                <p className="text-[#333] text-sm leading-[1.85] mb-5">{t.content}</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm text-white" style={{ background: "linear-gradient(135deg, #001F3F, #003d87)" }}>
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-[#0D0D0D] text-sm">{t.name}</p>
+                    <p className="text-gray-400 text-xs">{t.role} · {t.service}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -412,6 +496,7 @@ function TestimonialsSection() {
 
 // ─── CTA Section ──────────────────────────────────────────────────────────
 function CTASection() {
+  const [bookingOpen, setBookingOpen] = useState(false)
   return (
     <section className="py-20 sm:py-28 lg:py-32 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #001F3F 0%, #000D1F 100%)" }}>
       <div className="absolute inset-0 dot-grid-light opacity-20 pointer-events-none" />
@@ -420,16 +505,17 @@ function CTASection() {
         <Reveal>
           <span className="inline-block text-[#FF6B00] text-xs font-bold tracking-[0.3em] uppercase mb-5 sm:mb-6">Ready to Start?</span>
           <h2 className="font-display font-bold text-white mb-5 sm:mb-6 leading-tight" style={{ fontSize: "clamp(2.2rem, 6vw, 5rem)" }}>
-            Let's Build Something<br />
-            <span className="font-display italic text-[#FF9A40]">Extraordinary</span>{" "}Together.
+            Ready to Level Up<br />
+            <span className="font-display italic text-[#FF9A40]">Your Brand?</span>
           </h2>
           <p className="text-white/55 text-sm sm:text-base lg:text-lg mb-10 sm:mb-12 max-w-xl mx-auto leading-relaxed">
-            Your vision deserves a partner who understands strategy, creativity, and execution. Let's bring your brand to life.
+            Book a free 30-minute strategy call and we'll tell you exactly what's holding your brand back — and how to fix it.
           </p>
+          <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="/contact" className="btn-shine group inline-flex items-center justify-center gap-3 bg-[#FF6B00] text-white rounded-full font-bold text-sm sm:text-base hover:bg-[#e05f00] transition-colors duration-300 shadow-orange-glow hover:shadow-orange-glow-lg w-full sm:w-auto" style={{ padding: "15px 36px" }}>
-              Let's Work Together <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </a>
+            <button onClick={() => setBookingOpen(true)} className="btn-shine group inline-flex items-center justify-center gap-3 bg-[#FF6B00] text-white rounded-full font-bold text-sm sm:text-base hover:bg-[#e05f00] transition-colors duration-300 shadow-orange-glow hover:shadow-orange-glow-lg w-full sm:w-auto" style={{ padding: "15px 36px" }}>
+              Book a Strategy Call <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
+            </button>
             <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white/75 hover:text-white hover:border-white/40 rounded-full font-bold text-sm sm:text-base transition-all duration-300 w-full sm:w-auto" style={{ padding: "15px 36px", background: "rgba(255,255,255,0.05)" }}>
               <MessageCircle size={16} className="text-green-400 flex-shrink-0" /> Chat on WhatsApp
             </a>
@@ -521,7 +607,7 @@ export default function LandingPage() {
       <Header />
       <WhatsAppButton />
       <HeroSection />
-      <ServicesSection />
+      <VerticalsSection />
       <PortfolioSection />
       <ClientLogosSection />
       <TestimonialsSection />

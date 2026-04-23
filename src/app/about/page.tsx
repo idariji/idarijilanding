@@ -1,4 +1,4 @@
-'use client'
+import type { Metadata } from 'next'
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import Header from '../../components/Header'
@@ -6,6 +6,11 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Meet the Idariji Concept team — a full-service creative agency in Lagos and Ibadan, Nigeria. Learn our story, process, and the people powering your brand\'s growth.',
+}
 
 export default function AboutPage() {
   return (

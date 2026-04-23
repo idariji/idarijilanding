@@ -19,10 +19,12 @@ export const siteConfig = {
     twitter: "https://x.com/idarijiconcept",
   },
   consultationForm: "https://forms.gle/D2WXs3S4NDYZovpf6",
+  bookingEmail: "idarijiconcept@gmail.com",
   founded: 2019,
   stats: {
-    projects: "50+",
-    satisfaction: "98%",
-    years: "6+",
+    projects: 80,
+    satisfaction: 95,
+    years: 6,
+    industries: 12,
   },
 }

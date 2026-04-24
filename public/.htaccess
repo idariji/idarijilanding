@@ -1,15 +1,16 @@
-Options -MultiViews
+Options -MultiViews +FollowSymLinks
 RewriteEngine On
+RewriteBase /
 
-# Serve index.html from directories
-DirectoryIndex index.html
+# Serve any file that physically exists directly — no rewriting at all
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
 
-# Pass _next static assets through directly — never rewrite these
-RewriteRule ^_next/(.*)$ _next/$1 [L]
+# Serve any directory that physically exists directly
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
 # Serve pre-built HTML for clean URLs (no extension)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [L]
 
@@ -19,6 +20,7 @@ AddType application/javascript .js
 AddType font/woff2 .woff2
 AddType font/woff .woff
 AddType image/svg+xml .svg
+AddType application/json .json
 
 # 404 fallback
 ErrorDocument 404 /404.html

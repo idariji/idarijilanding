@@ -7,10 +7,7 @@ export default function Newsletter() {
   const [subscription, setSubscription] = useState<{
     status: "idle" | "loading" | "success" | "error"
     message: string
-  }>({
-    status: "idle",
-    message: "",
-  })
+  }>({ status: "idle", message: "" })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,22 +26,22 @@ export default function Newsletter() {
     setSubscription({ status: "loading", message: "" })
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const api = process.env.NEXT_PUBLIC_API_URL
+      if (!api) throw new Error('API not configured')
+
+      const response = await fetch(`${api}/api/v1/public/newsletter/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
-          subject: `Newsletter Subscription — ${email}`,
-          from_name: 'Idariji Concept Newsletter',
-          email,
-          message: `New newsletter subscription request from: ${email}`,
-        }),
+        body: JSON.stringify({ email: email.trim() }),
       })
 
       const result = await response.json()
-      if (result.success) {
-        setSubscription({ status: "success", message: "You're subscribed! Welcome aboard." })
+
+      if (response.ok) {
+        setSubscription({ status: "success", message: result.message || "You're subscribed! Welcome aboard." })
         setEmail("")
+      } else if (response.status === 409) {
+        setSubscription({ status: "error", message: "This email is already subscribed." })
       } else {
         setSubscription({ status: "error", message: "Something went wrong. Please try again." })
       }
@@ -54,7 +51,7 @@ export default function Newsletter() {
   }
 
   return (
-    <div 
+    <div
       className="relative overflow-hidden py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: 'url("/Newsletter.jpg")' }}
     >
@@ -89,7 +86,9 @@ export default function Newsletter() {
                   className="group relative overflow-hidden px-6 sm:px-6 py-4 sm:py-4 bg-orange-500 text-white hover:bg-orange-600 transition-colors w-full sm:w-auto min-h-[56px] active:scale-95 shadow-lg"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    <span className="font-medium text-sm sm:text-base">Subscribe</span>
+                    <span className="font-medium text-sm sm:text-base">
+                      {subscription.status === "loading" ? "Subscribing..." : "Subscribe"}
+                    </span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </button>
@@ -113,7 +112,7 @@ export default function Newsletter() {
           </form>
 
           <div className="mt-8 sm:mt-12 flex flex-col items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-300">
-            {["No spam, unsubscribe at any time", "Join 10,000+ subscribers", "Weekly newsletter with exclusive content"].map((text, index) => (
+            {["No spam, unsubscribe at any time", "Exclusive content and offers", "Weekly insights from the Idariji team"].map((text, index) => (
               <p key={index} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 text-orange-500" />
                 <span>{text}</span>

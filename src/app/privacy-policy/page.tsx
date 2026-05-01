@@ -1,14 +1,8 @@
 import React from 'react'
-import Link from 'next/link'
-import type { Metadata } from 'next'
+import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { siteConfig } from '../../lib/siteConfig'
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy — Idariji Concept',
-  description: 'Learn how Idariji Concept collects, uses, and protects your personal information.',
-}
 
 export default function PrivacyPolicyPage() {
   return (
@@ -19,7 +13,7 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">Privacy Policy</h1>
           <div className="flex items-center justify-center text-white/80 text-lg">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-3 text-2xl">›</span>
             <span className="text-white font-medium">Privacy Policy</span>
           </div>
@@ -33,7 +27,7 @@ export default function PrivacyPolicyPage() {
 
             <h2>1. Introduction</h2>
             <p>
-              Idariji Concept ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage our services.
+              Idariji Concept (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage our services.
             </p>
 
             <h2>2. Information We Collect</h2>

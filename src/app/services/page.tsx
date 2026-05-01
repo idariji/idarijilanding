@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import {
   Palette, TrendingUp, Users, Award, Globe, Gift,
   ArrowUpRight, ArrowRight, MessageCircle, CheckCircle2,
@@ -10,13 +10,6 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import WhatsAppButton from '../../components/WhatsAppButton'
 import { siteConfig } from '../../lib/siteConfig'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Branding & Marketing Services Nigeria — Hotels, Food Brands, Startups | Idariji Concept',
-  description: 'Specialist branding and marketing for Nigerian hospitality, food & beverage, tech startups, and corporate brands. Lagos and Ibadan. 80+ projects. 6+ years.',
-  keywords: ['branding agency Lagos', 'hotel marketing Nigeria', 'food packaging design Nigeria', 'startup branding Nigeria', 'corporate communications Nigeria', 'branding agency Ibadan'],
-}
 
 // ─── Vertical pages ────────────────────────────────────────────────────────
 const verticals = [

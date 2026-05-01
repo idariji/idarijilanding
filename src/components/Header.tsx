@@ -1,6 +1,5 @@
-'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { ChevronDown, ArrowUpRight, Hotel, UtensilsCrossed, Rocket, Building2, LayoutGrid } from 'lucide-react'
 import BookingModal from './BookingModal'
 
@@ -102,6 +101,20 @@ export default function Header() {
         }
         .mega-dropdown { animation: dropdownIn 0.2s cubic-bezier(0.4,0,0.2,1) forwards; }
 
+        .services-dropdown {
+          width: min(440px, calc(100vw - 2rem));
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        @media (max-width: 1023px) {
+          .services-dropdown {
+            left: auto;
+            right: 0;
+            transform: none;
+            width: min(320px, calc(100vw - 2rem));
+          }
+        }
+
         .vertical-card {
           position: relative;
           display: flex;
@@ -150,13 +163,13 @@ export default function Header() {
             {mobileServicesOpen && (
               <div className="pl-10 pb-3 flex flex-col gap-2">
                 {verticals.map((v) => (
-                  <Link key={v.href} href={v.href} onClick={close} className="flex items-center gap-2 text-white/60 hover:text-white text-sm py-1.5 transition-colors">
+                  <Link key={v.href} to={v.href} onClick={close} className="flex items-center gap-2 text-white/60 hover:text-white text-sm py-1.5 transition-colors">
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: v.color }} />
                     {v.name}
                     <span className="text-[10px] font-bold ml-1" style={{ color: v.color }}>{v.tag}</span>
                   </Link>
                 ))}
-                <Link href="/services" onClick={close} className="flex items-center gap-2 text-[#FF6B00] text-sm py-1.5 font-semibold">
+                <Link to="/services" onClick={close} className="flex items-center gap-2 text-[#FF6B00] text-sm py-1.5 font-semibold">
                   <LayoutGrid size={12} /> All Services
                 </Link>
               </div>
@@ -165,7 +178,7 @@ export default function Header() {
 
           {navLinks.map((link) => (
             <div key={link.name} className="mob-link-wrap">
-              <Link href={link.href} onClick={close} className="mob-nav-link">
+              <Link to={link.href} onClick={close} className="mob-nav-link">
                 <span className="mob-num">{link.num}</span>
                 <span className="mob-label">{link.name}</span>
                 <span className="mob-arrow">
@@ -214,7 +227,7 @@ export default function Header() {
           <div className="flex justify-between items-center" style={{ height: isScrolled && !menuOpen ? '60px' : '76px', transition: 'height 0.4s ease' }}>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center group" onClick={close}>
+            <Link to="/" className="flex items-center group" onClick={close}>
               <img
                 src="/idariji-logo-2.svg"
                 alt="Idariji Concept"
@@ -229,9 +242,9 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
 
-              <Link href="/about" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
+              <Link to="/about" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
                 About
               </Link>
 
@@ -248,11 +261,8 @@ export default function Header() {
 
                 {desktopServicesOpen && (
                   <div
-                    className="mega-dropdown absolute top-full mt-4 rounded-2xl overflow-hidden"
+                    className="mega-dropdown services-dropdown absolute top-full mt-4 rounded-2xl overflow-hidden"
                     style={{
-                      width: 'min(440px, calc(100vw - 2rem))',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
                       background: 'linear-gradient(160deg, rgba(0,15,35,0.98) 0%, rgba(0,8,20,0.99) 100%)',
                       backdropFilter: 'blur(32px)',
                       WebkitBackdropFilter: 'blur(32px)',
@@ -266,13 +276,13 @@ export default function Header() {
                     </div>
 
                     {/* Vertical cards */}
-                    <div className="p-3 grid grid-cols-2 gap-2">
+                    <div className="p-3 grid grid-cols-1 lg:grid-cols-2 gap-2">
                       {verticals.map((v) => {
                         const Icon = v.icon
                         return (
                           <Link
                             key={v.href}
-                            href={v.href}
+                            to={v.href}
                             onClick={() => setDesktopServicesOpen(false)}
                             className="vertical-card"
                             style={{ background: v.bg, borderColor: v.border }}
@@ -305,7 +315,7 @@ export default function Header() {
                         </div>
                       </div>
                       <Link
-                        href="/services"
+                        to="/services"
                         onClick={() => setDesktopServicesOpen(false)}
                         className="flex items-center gap-1.5 text-[#FF6B00] text-[12px] font-bold hover:gap-2.5 transition-all duration-200"
                       >
@@ -316,11 +326,11 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/portfolio" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
+              <Link to="/portfolio" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
                 Portfolio
               </Link>
 
-              <Link href="/blog" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
+              <Link to="/blog" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
                 Blog
               </Link>
 

@@ -1,14 +1,8 @@
-import React from 'react'
-import Link from 'next/link'
-import type { Metadata } from 'next'
+﻿import React from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { siteConfig } from '../../lib/siteConfig'
-
-export const metadata: Metadata = {
-  title: 'Terms of Service — Idariji Concept',
-  description: 'Terms and conditions governing your use of Idariji Concept\'s website and services.',
-}
 
 export default function TermsOfServicePage() {
   return (
@@ -19,7 +13,7 @@ export default function TermsOfServicePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">Terms of Service</h1>
           <div className="flex items-center justify-center text-white/80 text-lg">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-3 text-2xl">›</span>
             <span className="text-white font-medium">Terms of Service</span>
           </div>

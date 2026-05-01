@@ -1,5 +1,4 @@
-'use client'
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Send, CheckCircle, User, Mail, Phone, Building, Target, DollarSign } from 'lucide-react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -32,7 +31,7 @@ export default function ContactPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: `New Inquiry from ${formData.name}${formData.service ? ` — ${formData.service}` : ''}`,
           from_name: 'Idariji Concept Website',
           name: formData.name,

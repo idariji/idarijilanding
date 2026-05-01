@@ -1,5 +1,4 @@
-'use client'
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Send, CheckCircle, User, Mail, Phone, Briefcase, FileText } from 'lucide-react'
 import { siteConfig } from '../lib/siteConfig'
 
@@ -32,7 +31,7 @@ export default function CareersForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: `Career Application: ${formData.position} — ${formData.name}`,
           from_name: 'Idariji Concept Careers',
           name: formData.name,

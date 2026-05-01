@@ -1,15 +1,9 @@
-import type { Metadata } from 'next'
-import React from 'react'
+﻿import React from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
-
-export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: 'Explore our portfolio of brand identity, digital marketing, and creative work for businesses across Nigeria and beyond. See what Idariji Concept delivers.',
-}
 
 export default function PortfolioPage() {
   const portfolioItems = [

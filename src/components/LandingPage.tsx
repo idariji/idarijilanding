@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import React, { useState, useEffect, useRef, useMemo } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import {
@@ -540,7 +540,7 @@ function NewsletterSection() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: `Newsletter Subscription — ${email}`,
           from_name: 'Idariji Concept Newsletter',
           email,

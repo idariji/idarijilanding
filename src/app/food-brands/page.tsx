@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import React, { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import {
@@ -325,7 +325,7 @@ function LeadMagnetSection() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: `Food Brand Checklist Download — ${form.brand || form.name}`,
           from_name: form.name,
           email: form.email,

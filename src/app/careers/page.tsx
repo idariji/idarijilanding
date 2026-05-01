@@ -1,18 +1,12 @@
-import React from 'react'
-import Link from 'next/link'
+﻿import React from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, Briefcase, Heart, Users, Zap } from 'lucide-react'
-import type { Metadata } from 'next'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
 import CareersForm from '../../components/CareersForm'
-
-export const metadata: Metadata = {
-  title: 'Careers — Idariji Concept',
-  description: 'Join the Idariji Concept team. We\'re looking for talented creatives, strategists, and builders who want to make a real impact.',
-}
 
 const values = [
   {
@@ -76,7 +70,7 @@ export default function CareersPage() {
             Help us build brands, drive growth, and deliver results for businesses across Nigeria and beyond.
           </p>
           <div className="flex items-center justify-center text-white/80 text-lg">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-3 text-2xl">›</span>
             <span className="text-white font-medium">Careers</span>
           </div>

@@ -1,16 +1,10 @@
-import React from 'react'
+﻿import React from 'react'
 import { Star, Quote } from 'lucide-react'
-import type { Metadata } from 'next'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
-
-export const metadata: Metadata = {
-  title: 'Client Testimonials — Idariji Concept',
-  description: 'Hear what our clients say about working with Idariji Concept. Real results from real businesses across Nigeria and beyond.',
-}
 
 const testimonials = [
   {

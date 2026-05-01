@@ -1,5 +1,3 @@
-'use client'
-import type { Metadata } from 'next'
 import React, { useEffect, useState } from 'react'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import Header from '../../components/Header'
@@ -27,7 +25,7 @@ export default function BlogPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const api = process.env.NEXT_PUBLIC_API_URL
+    const api = import.meta.env.VITE_API_URL
     if (!api) { setLoading(false); return }
 
     fetch(`${api}/api/v1/public/blog`)

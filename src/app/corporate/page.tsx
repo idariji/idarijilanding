@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 import React, { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import {
@@ -156,7 +156,7 @@ function CapabilityRequestSection() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
           subject: `Corporate Capability Statement Request — ${form.company}`,
           from_name: form.name,
           email: form.email,

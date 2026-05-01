@@ -1,6 +1,5 @@
-'use client'
-import React, { useState } from 'react'
-import Link from 'next/link'
+﻿import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
@@ -145,7 +144,7 @@ export default function FAQPage() {
             Everything you need to know about working with Idariji Concept.
           </p>
           <div className="flex items-center justify-center text-white/80 text-lg">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span className="mx-3 text-2xl">›</span>
             <span className="text-white font-medium">FAQ</span>
           </div>

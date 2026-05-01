@@ -1,5 +1,4 @@
-'use client'
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { ArrowRight, Mail, CheckCircle2, XCircle } from 'lucide-react'
 
 export default function Newsletter() {
@@ -26,7 +25,7 @@ export default function Newsletter() {
     setSubscription({ status: "loading", message: "" })
 
     try {
-      const api = process.env.NEXT_PUBLIC_API_URL
+      const api = import.meta.env.VITE_API_URL
       if (!api) throw new Error('API not configured')
 
       const response = await fetch(`${api}/api/v1/public/newsletter/subscribe`, {

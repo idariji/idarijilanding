@@ -1,5 +1,4 @@
-'use client'
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 
 export default function CursorEffect() {
   const [position, setPosition] = useState({ x: 0, y: 0 })

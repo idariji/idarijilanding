@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 import { siteConfig } from '../lib/siteConfig'
 
@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-4 space-y-5">
-            <Link href="/">
+            <Link to="/">
               <img
                 src="/idariji-logo.svg"
                 alt="Idariji Concept"
@@ -70,7 +70,7 @@ export default function Footer() {
                   { name: 'All Services', href: '/services' },
                 ].map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm">
+                    <Link to={l.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm">
                       {l.name}
                     </Link>
                   </li>
@@ -90,7 +90,7 @@ export default function Footer() {
                   { name: 'FAQ', href: '/faq' },
                 ].map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm">
+                    <Link to={l.href} className="text-gray-400 hover:text-white transition-colors text-xs sm:text-sm">
                       {l.name}
                     </Link>
                   </li>
@@ -124,8 +124,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-3.5 w-3.5 text-[#FF6B00] flex-shrink-0" />
-                <a href="mailto:hello@idarijiconcept.ng" className="text-xs text-gray-400 hover:text-white transition-colors break-all">
-                  hello@idarijiconcept.ng
+                <a href={`mailto:${siteConfig.email}`} className="text-xs text-gray-400 hover:text-white transition-colors break-all">
+                  {siteConfig.email}
                 </a>
               </div>
             </div>
@@ -153,8 +153,8 @@ export default function Footer() {
             © {siteConfig.founded}–{currentYear} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-5 text-xs">
-            <Link href="/privacy-policy" className="text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms-of-service" className="text-gray-500 hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="text-gray-500 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-gray-500 hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

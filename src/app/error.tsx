@@ -1,5 +1,4 @@
-'use client'
-
+﻿
 import { useEffect } from 'react'
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react'
 

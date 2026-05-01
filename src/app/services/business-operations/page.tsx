@@ -1,5 +1,4 @@
-'use client'
-import React from 'react'
+﻿import React from 'react'
 import { Users, CheckCircle, ArrowRight } from 'lucide-react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'

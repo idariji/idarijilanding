@@ -1,5 +1,4 @@
-'use client'
-import React, { useMemo } from 'react'
+﻿import React, { useMemo } from 'react'
 import { TrendingUp, CheckCircle, ArrowRight } from 'lucide-react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'

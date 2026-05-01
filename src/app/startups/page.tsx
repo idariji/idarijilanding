@@ -1,9 +1,9 @@
-"use client"
-import React, { useRef } from "react"
+﻿"use client"
+import React, { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import {
   ArrowRight, ArrowUpRight, CheckCircle2, MessageCircle,
-  Layers, Target, Code2, Linkedin, ChevronDown
+  Layers, Target, Code2, Linkedin, ChevronDown, Send
 } from "lucide-react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
@@ -228,34 +228,142 @@ function PackagesSection() {
   )
 }
 
-// ─── Case Study Placeholder ───────────────────────────────────────────────
-function CaseStudySection() {
+// ─── Startup Lead Form ────────────────────────────────────────────────────
+function StartupLeadForm() {
+  const [form, setForm] = useState({ name: "", startup: "", email: "", whatsapp: "", stage: "", challenge: "" })
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }))
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("loading")
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: `Startup Inquiry — ${form.startup} (${form.stage})`,
+          from_name: form.name,
+          ...form,
+        }),
+      })
+      const data = await res.json()
+      setStatus(data.success ? "success" : "error")
+    } catch {
+      setStatus("error")
+    }
+  }
+
+  const inp = "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm text-[#0D0D0D] placeholder:text-gray-300 focus:outline-none focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/10 transition-colors"
+
   return (
     <section className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <Reveal className="mb-10">
-          <span className="text-xs font-bold tracking-[0.3em] uppercase mb-3 block" style={{ color: "#4F46E5" }}>Our Work</span>
-          <h2 className="font-display font-bold text-[#0D0D0D] leading-tight" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
-            Startup case studies
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="rounded-2xl p-10 sm:p-14 text-center border border-dashed border-gray-200 bg-gray-50">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: "rgba(79,70,229,0.08)" }}>
-              <Layers size={24} style={{ color: "#4F46E5" }} />
-            </div>
-            <h3 className="font-display font-bold text-[#0D0D0D] text-xl mb-3">Case studies coming with launch</h3>
-            <p className="text-gray-500 text-sm max-w-md mx-auto mb-6">
-              We're preparing detailed startup case studies for Q4 2026 launch. Want to be a launch case study? Get early access pricing and priority attention.
-            </p>
-            <BookCTA
-              className="inline-flex items-center gap-2 font-bold text-sm rounded-full px-6 py-3 transition-all duration-300 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, #4F46E5, #3730A3)", color: "white", boxShadow: "0 8px 24px rgba(79,70,229,0.25)" }}
-            >
-              Apply for Early Access <ArrowUpRight size={13} />
-            </BookCTA>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          {/* Left — copy */}
+          <div>
+            <Reveal>
+              <span className="text-xs font-bold tracking-[0.3em] uppercase mb-3 block" style={{ color: "#4F46E5" }}>Work With Us</span>
+              <h2 className="font-display font-bold text-[#0D0D0D] leading-tight mb-5" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
+                Ready to build a brand<br />
+                <span className="font-display italic" style={{ color: "#4F46E5" }}>worth remembering?</span>
+              </h2>
+              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-8">
+                Tell us about your startup. We'll reach out within 24 hours to schedule a free 30-minute brand audit — no pitch, no pressure.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="space-y-4">
+                {[
+                  { icon: "🎯", title: "Brand Strategy Session", desc: "Understand your positioning, messaging, and competitive gaps." },
+                  { icon: "🖥️", title: "Website Teardown", desc: "We walk through your site and tell you exactly what's losing you leads." },
+                  { icon: "📈", title: "Growth Roadmap", desc: "A clear 90-day action plan tailored to your stage and goals." },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100">
+                    <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                    <div>
+                      <p className="font-semibold text-[#0D0D0D] text-sm mb-0.5">{item.title}</p>
+                      <p className="text-gray-500 text-xs leading-snug">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
+
+          {/* Right — form */}
+          <Reveal delay={0.15}>
+            <div className="rounded-2xl p-7 sm:p-9 border border-gray-100 shadow-xl" style={{ background: "linear-gradient(145deg, #fafafa 0%, #ffffff 100%)" }}>
+              {status === "success" ? (
+                <div className="text-center py-10">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(79,70,229,0.1)" }}>
+                    <CheckCircle2 size={28} style={{ color: "#4F46E5" }} />
+                  </div>
+                  <h3 className="font-display font-bold text-[#0D0D0D] text-xl mb-2">We'll be in touch!</h3>
+                  <p className="text-gray-500 text-sm">Expect a message from us within 24 hours.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Your Name</label>
+                      <input type="text" required className={inp} placeholder="Tunde Okonkwo" value={form.name} onChange={(e) => set("name", e.target.value)} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Startup Name</label>
+                      <input type="text" required className={inp} placeholder="Payday.ng" value={form.startup} onChange={(e) => set("startup", e.target.value)} />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Email Address</label>
+                    <input type="email" required className={inp} placeholder="you@yourstartup.com" value={form.email} onChange={(e) => set("email", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">WhatsApp Number</label>
+                    <input type="tel" required className={inp} placeholder="+234 810 984 9221" value={form.whatsapp} onChange={(e) => set("whatsapp", e.target.value)} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Your Stage</label>
+                    <select required className={inp} value={form.stage} onChange={(e) => set("stage", e.target.value)}>
+                      <option value="">Select your stage...</option>
+                      <option value="Pre-launch">Pre-launch — building the product</option>
+                      <option value="MVP">MVP — have users, refining the product</option>
+                      <option value="Growing">Growing — past product-market fit</option>
+                      <option value="Scaling">Scaling — Series A or later</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Biggest Challenge</label>
+                    <textarea
+                      required
+                      rows={3}
+                      className={`${inp} resize-none`}
+                      placeholder="What's holding your brand or growth back right now?"
+                      value={form.challenge}
+                      onChange={(e) => set("challenge", e.target.value)}
+                    />
+                  </div>
+                  {status === "error" && (
+                    <p className="text-red-500 text-xs">Something went wrong. Please try again or WhatsApp us directly.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full flex items-center justify-center gap-2 font-bold text-sm rounded-full py-3.5 text-white transition-all duration-300 hover:opacity-90 disabled:opacity-60"
+                    style={{ background: "linear-gradient(135deg, #4F46E5, #3730A3)", boxShadow: "0 8px 24px rgba(79,70,229,0.3)" }}
+                  >
+                    {status === "loading" ? "Sending..." : (<>Get My Free Audit <Send size={14} /></>)}
+                  </button>
+                  <p className="text-center text-gray-400 text-[11px]">No spam. No sales pitch. Just honest advice.</p>
+                </form>
+              )}
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
@@ -308,7 +416,7 @@ export default function StartupsPage() {
       <HeroSection />
       <ProblemsSection />
       <PackagesSection />
-      <CaseStudySection />
+      <StartupLeadForm />
       <FinalCTA />
       <Footer />
     </div>

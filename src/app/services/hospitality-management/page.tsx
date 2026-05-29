@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function HospitalityManagementPage() {
+  usePageMeta({
+    title: "Hospitality Marketing & Management Nigeria | Idariji Concept",
+    description: "Full-service hospitality marketing, direct booking strategies, and brand management for Nigerian hotels and event venues.",
+  })
   const features = [
     "Hotel Operations Management",
     "Guest Experience Optimization", 

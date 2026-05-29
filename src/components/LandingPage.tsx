@@ -10,6 +10,8 @@ import Header from "./Header"
 import Footer from "./Footer"
 import BookingModal from "./BookingModal"
 import { siteConfig } from "../lib/siteConfig"
+import { usePageMeta } from "../lib/usePageMeta"
+import { JsonLd } from "./JsonLd"
 
 // ─── Scroll Progress ──────────────────────────────────────────────────────
 function ScrollProgressBar() {
@@ -95,10 +97,10 @@ function HeroSection() {
           <div>
             <div style={{ animation: "fadeInUp 0.8s ease 0.2s both" }}>
               <span className="inline-block text-[#FF9A40] text-xs font-bold tracking-[0.3em] uppercase mb-5">Lagos · Ibadan · Nigeria</span>
-              <h2 className="font-display font-bold text-white leading-[1.08] mb-6 sm:mb-8" style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)" }}>
+              <h1 className="font-display font-bold text-white leading-[1.08] mb-6 sm:mb-8" style={{ fontSize: "clamp(2rem, 4.8vw, 4.2rem)" }}>
                 We build the brands<br />
                 <span className="font-display italic text-[#FF6B00]">Nigerians notice.</span>
-              </h2>
+              </h1>
             </div>
             <div style={{ animation: "fadeInUp 0.7s ease 0.38s both" }}>
               <p className="text-white/55 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-lg">
@@ -636,8 +638,38 @@ function WhatsAppButton() {
 
 // ─── Main ─────────────────────────────────────────────────────────────────
 export default function LandingPage() {
+  usePageMeta({
+    title: "Idariji Concept — Building Brands. Driving Growth. Delivering Results.",
+    description: "Specialist branding and marketing for Nigerian hotels, food brands, and startups. 6+ years, 80+ projects. Lagos and Ibadan, Nigeria.",
+  })
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness"],
+    name: "Idariji Concept",
+    url: "https://idarijiconcept.ng",
+    logo: "https://idarijiconcept.ng/idariji-logo-2.svg",
+    email: "hello@idarijiconcept.ng",
+    telephone: ["+2348109849221", "+2349034147631"],
+    description: "Specialist branding, marketing, and business development agency for Nigerian hospitality, food & beverage, and growth-stage brands.",
+    address: [
+      { "@type": "PostalAddress", streetAddress: "21 Anifowose Street, Shomolu", addressLocality: "Lagos", addressCountry: "NG" },
+      { "@type": "PostalAddress", streetAddress: "House 3, Latinwo Estate, Idi Ishin Jericho", addressLocality: "Ibadan", addressCountry: "NG" },
+    ],
+    sameAs: [
+      "https://web.facebook.com/Idarijiconcept",
+      "https://www.instagram.com/idariji_concept",
+      "https://www.linkedin.com/company/idariji-concept/",
+      "https://x.com/idarijiconcept",
+    ],
+    foundingDate: "2019",
+    numberOfEmployees: { "@type": "QuantitativeValue", minValue: 5, maxValue: 20 },
+    areaServed: ["Lagos", "Ibadan", "Nigeria"],
+  }
+
   return (
     <div className="min-h-screen">
+      <JsonLd id="organization" schema={orgSchema} />
       <ScrollProgressBar />
       <Header />
       <WhatsAppButton />

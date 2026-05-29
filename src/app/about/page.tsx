@@ -5,8 +5,13 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 export default function AboutPage() {
+  usePageMeta({
+    title: "About Idariji Concept | 6+ Years Building Nigerian Brands",
+    description: "We're a specialist creative agency based in Lagos and Ibadan. 6+ years, 80+ projects, and a mission to build brands Nigerians notice.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <WhatsAppButton />

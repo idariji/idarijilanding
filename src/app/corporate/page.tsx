@@ -8,6 +8,7 @@ import {
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { siteConfig } from "@/lib/siteConfig"
+import { usePageMeta } from "@/lib/usePageMeta"
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -270,6 +271,10 @@ function CapabilityRequestSection() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function CorporatePage() {
+  usePageMeta({
+    title: "Corporate Branding & Communications Nigeria | Idariji Concept",
+    description: "Professional corporate branding, capability statements, and marketing collateral for Nigerian corporations and enterprises.",
+  })
   return (
     <div className="min-h-screen">
       <Header />

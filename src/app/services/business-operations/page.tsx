@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function BusinessOperationsPage() {
+  usePageMeta({
+    title: "Business Operations Support Nigeria | Idariji Concept",
+    description: "Process design, operations management, and business systems support for growing Nigerian SMEs and enterprises.",
+  })
   const features = [
     "Process Optimization & Automation",
     "Organizational Structure Design", 

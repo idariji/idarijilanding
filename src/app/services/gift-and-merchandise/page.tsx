@@ -4,8 +4,13 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function GiftAndMerchandisePage() {
+  usePageMeta({
+    title: "Custom Gift & Merchandise Design Nigeria | Idariji Concept",
+    description: "Branded corporate gifts, custom merchandise, and promotional products for Nigerian businesses, events, and corporate gifting.",
+  })
   type GiftItem = { id: number; name: string; image: string; price: string; rating: number; items: string[] }
   const giftItems: GiftItem[] = [
     {

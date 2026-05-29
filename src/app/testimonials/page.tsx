@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 const testimonials = [
   {
@@ -73,6 +74,10 @@ const testimonials = [
 ]
 
 export default function TestimonialsPage() {
+  usePageMeta({
+    title: "Client Testimonials | Reviews — Idariji Concept",
+    description: "What our clients say: reviews from Nigerian hotels, food brands, fashion labels, and corporate clients who've worked with Idariji Concept.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <WhatsAppButton />

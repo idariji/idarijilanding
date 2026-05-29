@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function DigitalDevelopmentPage() {
+  usePageMeta({
+    title: "Website & App Development Nigeria | Idariji Concept",
+    description: "High-performance websites and mobile apps for Nigerian businesses. Custom development that's fast, modern, and built to convert.",
+  })
   const features = [
     "Website Design & Development",
     "Mobile App Development", 

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 import CareersForm from '../../components/CareersForm'
 
 const values = [
@@ -56,6 +57,10 @@ const openings = [
 ]
 
 export default function CareersPage() {
+  usePageMeta({
+    title: "Careers at Idariji Concept | Join Our Team in Lagos & Ibadan",
+    description: "Join a fast-growing creative agency in Lagos and Ibadan. We're always looking for talented creatives, marketers, and strategists.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <WhatsAppButton />

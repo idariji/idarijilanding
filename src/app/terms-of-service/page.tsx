@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { siteConfig } from '../../lib/siteConfig'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 export default function TermsOfServicePage() {
+  usePageMeta({
+    title: "Terms of Service | Idariji Concept",
+    description: "Terms and conditions for using Idariji Concept's website and engaging our services.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <Header />

@@ -9,6 +9,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import BookCTA from "@/components/BookCTA"
 import { siteConfig } from "@/lib/siteConfig"
+import { usePageMeta } from "@/lib/usePageMeta"
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -411,6 +412,10 @@ function FinalCTA() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function StartupsPage() {
+  usePageMeta({
+    title: "Startup Branding Agency Nigeria | Idariji Concept",
+    description: "Brand strategy, high-performance websites, and growth marketing for seed-stage to Series A Nigerian startups. Build a brand that converts.",
+  })
   return (
     <div className="min-h-screen">
       <Header />

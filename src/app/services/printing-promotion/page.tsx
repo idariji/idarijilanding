@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function PrintingPromotionPage() {
+  usePageMeta({
+    title: "Printing & Promotional Materials Nigeria | Idariji Concept",
+    description: "High-quality printing for business cards, flyers, banners, branded merchandise, and promotional materials in Nigeria.",
+  })
   const features = [
     "Brand Material Design & Printing",
     "Large-Scale Campaign Materials", 

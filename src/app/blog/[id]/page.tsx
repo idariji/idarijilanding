@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Calendar, User, ArrowLeft, Tag } from 'lucide-react'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
+import { usePageMeta } from '../../../lib/usePageMeta'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
@@ -37,6 +38,11 @@ export default function BlogPostPage() {
   const [post, setPost] = useState<Post | null>(null)
   const [related, setRelated] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
+
+  usePageMeta({
+    title: post ? `${post.title} | Idariji Concept Blog` : "Blog | Idariji Concept",
+    description: post?.excerpt ?? "Brand strategy and marketing insights for Nigerian businesses from the Idariji Concept team.",
+  })
 
   useEffect(() => {
     const api = import.meta.env.VITE_API_URL

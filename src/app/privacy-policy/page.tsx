@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { siteConfig } from '../../lib/siteConfig'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 export default function PrivacyPolicyPage() {
+  usePageMeta({
+    title: "Privacy Policy | Idariji Concept",
+    description: "Idariji Concept's privacy policy. How we collect, use, and protect your personal data in compliance with NDPR.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <Header />

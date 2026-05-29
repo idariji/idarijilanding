@@ -5,8 +5,13 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import WhatsAppButton from '../../components/WhatsAppButton'
 import { siteConfig } from '../../lib/siteConfig'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 export default function ContactPage() {
+  usePageMeta({
+    title: "Contact Us | Book a Free Strategy Call — Idariji Concept",
+    description: "Book a free 30-minute strategy call or send us a project inquiry. We reply within 1 business day. Lagos and Ibadan, Nigeria.",
+  })
   const [formData, setFormData] = useState({
     name: '',
     email: '',

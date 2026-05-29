@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function ProductBrandingPage() {
+  usePageMeta({
+    title: "Product Branding & Identity Design Nigeria | Idariji Concept",
+    description: "Logo design, brand identity systems, and visual language for Nigerian businesses ready to look premium and stand out.",
+  })
   const features = useMemo(() => [
     "Brand Identity Design",
     "Logo & Visual System",

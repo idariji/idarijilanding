@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 interface BlogPost {
   id: string
@@ -21,6 +22,10 @@ function formatDate(iso: string) {
 }
 
 export default function BlogPage() {
+  usePageMeta({
+    title: "Blog | Brand & Marketing Insights — Idariji Concept",
+    description: "Actionable brand strategy and marketing insights for Nigerian businesses. Tips on growth, branding, digital marketing, and more.",
+  })
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
   const [fetchError, setFetchError] = useState(false)

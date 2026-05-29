@@ -10,6 +10,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import BookCTA from "@/components/BookCTA"
 import { siteConfig } from "@/lib/siteConfig"
+import { usePageMeta } from "@/lib/usePageMeta"
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -475,6 +476,10 @@ function FinalCTA() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function HotelsPage() {
+  usePageMeta({
+    title: "Hotel Branding & Marketing Agency Nigeria | Idariji Concept",
+    description: "Win back direct bookings, build a recognisable hotel brand, and grow revenue. Specialist marketing for Nigerian boutique hotels and serviced apartments.",
+  })
   return (
     <div className="min-h-screen">
       <Header />

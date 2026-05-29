@@ -5,8 +5,13 @@ import Footer from '../../../components/Footer'
 import Newsletter from '../../../components/Newsletter'
 import CTA from '../../../components/CTA'
 import WhatsAppButton from '../../../components/WhatsAppButton'
+import { usePageMeta } from '../../../lib/usePageMeta'
 
 export default function SalesMarketingPage() {
+  usePageMeta({
+    title: "Sales & Digital Marketing Agency Nigeria | Idariji Concept",
+    description: "Social media management, paid advertising, content strategy, and sales collateral for Nigerian businesses that want to grow.",
+  })
   const features = useMemo(() => [
     "Digital Marketing Campaigns",
     "Social Media Management", 

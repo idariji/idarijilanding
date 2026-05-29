@@ -4,8 +4,13 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 export default function PortfolioPage() {
+  usePageMeta({
+    title: "Our Portfolio | Brand & Marketing Work — Idariji Concept",
+    description: "Selected brand identity, packaging design, digital marketing, and social media campaigns for Nigerian hotels, food brands, and fashion labels.",
+  })
   const portfolioItems = [
     { title: "Social Media Upgrade", category: "Digital Marketing", image: "/portfolio/trois-ore/Tileri ILeyavengaza (I).jpg", company: "Trois Ore Residence", alt: "Social media design and digital marketing campaign for Trois Ore Residence hotel, Ibadan Nigeria" },
     { title: "Brand Identity", category: "Logo Design", image: "/portfolio/trois-ore/Tileri ILeyavengaza (II).jpg", company: "Trois Ore Residence", alt: "Brand identity and logo design for Trois Ore Residence hospitality brand, Nigeria" },

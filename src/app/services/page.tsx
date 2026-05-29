@@ -10,6 +10,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import WhatsAppButton from '../../components/WhatsAppButton'
 import { siteConfig } from '../../lib/siteConfig'
+import { usePageMeta } from '../../lib/usePageMeta'
 
 // ─── Vertical pages ────────────────────────────────────────────────────────
 const verticals = [
@@ -112,6 +113,10 @@ const packages = [
 ]
 
 export default function ServicesPage() {
+  usePageMeta({
+    title: "Our Services | Branding, Marketing & Digital — Idariji Concept",
+    description: "Specialist branding, digital marketing, web development, packaging, printing, and business operations for Nigerian businesses. Transparent pricing.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <WhatsAppButton />

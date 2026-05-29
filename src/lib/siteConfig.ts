@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Building Brands. Driving Growth. Delivering Results.",
   description:
     "We help businesses turn ideas into powerful brands through strategic branding, marketing, and business development solutions that inspire trust, attract customers, and accelerate growth.",
-  url: "https://idarijiconcept.com",
+  url: "https://idarijiconcept.ng",
   email: "hello@idarijiconcept.ng",
   phones: ["+234 810 984 9221", "+234 903 414 7631"],
   whatsapp: "2348109849221",

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import Newsletter from '../../components/Newsletter'
 import CTA from '../../components/CTA'
 import WhatsAppButton from '../../components/WhatsAppButton'
+import { usePageMeta } from '../../lib/usePageMeta'
 import { siteConfig } from '../../lib/siteConfig'
 
 const faqs = [
@@ -130,6 +131,10 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQPage() {
+  usePageMeta({
+    title: "Frequently Asked Questions | Idariji Concept",
+    description: "Answers to common questions about working with Idariji Concept — services, pricing, timelines, and process.",
+  })
   return (
     <div className="min-h-screen bg-white">
       <WhatsAppButton />

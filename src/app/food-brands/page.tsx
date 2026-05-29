@@ -10,6 +10,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import BookCTA from "@/components/BookCTA"
 import { siteConfig } from "@/lib/siteConfig"
+import { usePageMeta } from "@/lib/usePageMeta"
 
 function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -490,6 +491,10 @@ function FinalCTA() {
 
 // ─── Page ─────────────────────────────────────────────────────────────────
 export default function FoodBrandsPage() {
+  usePageMeta({
+    title: "Food Brand & Packaging Design Nigeria | Idariji Concept",
+    description: "NAFDAC-ready packaging design, brand identity, and delivery-app optimisation for Nigerian food, beverage, and snack brands ready to scale.",
+  })
   return (
     <div className="min-h-screen">
       <Header />

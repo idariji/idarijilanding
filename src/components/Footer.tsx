@@ -18,12 +18,11 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-4 space-y-5">
-            <Link to="/">
+            <Link to="/" className="block">
               <img
-                src="/idariji-logo.svg"
+                src="/idariji-logo-2.svg"
                 alt="Idariji Concept"
-                className="h-8 sm:h-10 w-auto"
-                style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                style={{ width: '200px', height: '59px', filter: 'brightness(0) invert(1)', opacity: 0.9, display: 'block' }}
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">

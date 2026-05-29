@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import { siteConfig } from '../lib/siteConfig'
 
@@ -35,14 +36,14 @@ export default function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="btn-shine group inline-flex items-center justify-center gap-3 bg-[#FF6B00] text-white rounded-full font-bold text-sm sm:text-base hover:bg-[#e05f00] transition-colors duration-300 w-full sm:w-auto"
             style={{ padding: "15px 36px", boxShadow: "0 8px 32px rgba(255,107,0,0.35)" }}
           >
             Let's Work Together
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform flex-shrink-0" />
-          </a>
+          </Link>
           <a
             href={`https://wa.me/${siteConfig.whatsapp}`}
             target="_blank"

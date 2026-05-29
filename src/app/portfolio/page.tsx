@@ -51,21 +51,6 @@ export default function PortfolioPage() {
             ))}
           </div>
           
-          {/* Pagination */}
-          <div className="flex justify-center items-center mt-8 sm:mt-12 space-x-1 sm:space-x-2">
-            <button className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 text-white rounded flex items-center justify-center font-medium hover:bg-orange-600 transition-colors text-sm sm:text-base">
-              1
-            </button>
-            <button className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-700 rounded flex items-center justify-center font-medium hover:bg-gray-300 transition-colors text-sm sm:text-base">
-              2
-            </button>
-            <button className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-700 rounded flex items-center justify-center font-medium hover:bg-gray-300 transition-colors text-sm sm:text-base">
-              3
-            </button>
-            <button className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-700 rounded flex items-center justify-center font-medium hover:bg-gray-300 transition-colors text-sm sm:text-base">
-              4
-            </button>
-          </div>
         </div>
       </div>
       <CTA />

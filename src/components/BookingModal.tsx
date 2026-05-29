@@ -60,7 +60,7 @@ export default function BookingModal({ open, onClose }: Props) {
     setStatus('sending')
 
     try {
-      const res = await fetch('https://formsubmit.co/ajax/idarijiconcept@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/hello@idarijiconcept.ng', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
@@ -132,7 +132,7 @@ export default function BookingModal({ open, onClose }: Props) {
               {status === 'error' && (
                 <div className="flex items-center gap-2.5 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
                   <AlertCircle size={15} className="text-red-500 flex-shrink-0" />
-                  <p className="text-red-600 text-sm">Something went wrong. Please try again or email us directly at <a href="mailto:idarijiconcept@gmail.com" className="font-semibold underline">idarijiconcept@gmail.com</a>.</p>
+                  <p className="text-red-600 text-sm">Something went wrong. Please try again or email us directly at <a href="mailto:hello@idarijiconcept.ng" className="font-semibold underline">hello@idarijiconcept.ng</a>.</p>
                 </div>
               )}
 
@@ -216,8 +216,8 @@ export default function BookingModal({ open, onClose }: Props) {
 
               <p className="text-center text-gray-400 text-xs">
                 Or reach us directly at{' '}
-                <a href="mailto:idarijiconcept@gmail.com" className="text-[#FF6B00] font-semibold hover:underline">
-                  idarijiconcept@gmail.com
+                <a href="mailto:hello@idarijiconcept.ng" className="text-[#FF6B00] font-semibold hover:underline">
+                  hello@idarijiconcept.ng
                 </a>
               </p>
             </form>

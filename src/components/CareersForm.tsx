@@ -26,6 +26,12 @@ export default function CareersForm() {
     setIsLoading(true)
     setError('')
 
+    if (!import.meta.env.VITE_WEB3FORMS_KEY) {
+      setIsLoading(false)
+      setError('Form not configured. Please reach us on WhatsApp.')
+      return
+    }
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',

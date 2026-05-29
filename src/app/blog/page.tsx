@@ -23,15 +23,16 @@ function formatDate(iso: string) {
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState(false)
 
   useEffect(() => {
     const api = import.meta.env.VITE_API_URL
     if (!api) { setLoading(false); return }
 
     fetch(`${api}/api/v1/public/blog`)
-      .then((r) => r.json())
+      .then((r) => { if (!r.ok) throw new Error('non-ok'); return r.json() })
       .then((data: BlogPost[]) => { setPosts(Array.isArray(data) ? data : []); setLoading(false) })
-      .catch(() => setLoading(false))
+      .catch(() => { setFetchError(true); setLoading(false) })
   }, [])
 
   return (
@@ -75,7 +76,20 @@ export default function BlogPage() {
             </div>
           )}
 
-          {!loading && posts.length === 0 && (
+          {!loading && fetchError && (
+            <div className="text-center py-24">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">⚠️</span>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Couldn't load posts</h2>
+              <p className="text-gray-500 max-w-md mx-auto mb-6">There was a problem fetching the blog. Please try again in a moment.</p>
+              <button onClick={() => window.location.reload()} className="inline-flex items-center gap-2 bg-[#FF6B00] text-white font-semibold text-sm px-6 py-3 rounded-full hover:bg-[#e05f00] transition-colors">
+                Retry
+              </button>
+            </div>
+          )}
+
+          {!loading && !fetchError && posts.length === 0 && (
             <div className="text-center py-24">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-3xl">✍️</span>
@@ -85,7 +99,7 @@ export default function BlogPage() {
             </div>
           )}
 
-          {!loading && posts.length > 0 && (
+          {!loading && !fetchError && posts.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
                 <a key={post.id} href={`/blog/${post.slug}`} className="block group">

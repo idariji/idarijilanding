@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 
 import HomePage from './app/page'
 import AboutPage from './app/about/page'
@@ -31,6 +31,21 @@ function ScrollToTop() {
   return null
 }
 
+function CanonicalTag() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    const href = 'https://idarijiconcept.ng' + (pathname === '/' ? '/' : pathname.replace(/\/$/, ''))
+    let link = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!link) {
+      link = document.createElement('link')
+      link.rel = 'canonical'
+      document.head.appendChild(link)
+    }
+    link.href = href
+  }, [pathname])
+  return null
+}
+
 function NotFound() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif' }}>
@@ -45,6 +60,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <CanonicalTag />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -69,6 +85,7 @@ export default function App() {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsPage />} />
+        <Route path="/packages" element={<Navigate to="/contact" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

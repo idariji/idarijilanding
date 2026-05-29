@@ -26,6 +26,12 @@ export default function ContactPage() {
     setIsLoading(true)
     setError('')
 
+    if (!import.meta.env.VITE_WEB3FORMS_KEY) {
+      setIsLoading(false)
+      setError('Form not configured. Please email us at hello@idarijiconcept.ng')
+      return
+    }
+
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',

@@ -169,6 +169,40 @@ function HeroSection() {
   )
 }
 
+// ─── Services Ticker ──────────────────────────────────────────────────────
+function ServicesTicker() {
+  const services = [
+    "Brand Identity",
+    "Digital Marketing",
+    "Packaging Design",
+    "Social Media Management",
+    "Web Development",
+    "Print & Promotion",
+    "Hospitality Marketing",
+    "Photography",
+    "Corporate Branding",
+    "Event Marketing",
+  ]
+  const items = [...services, ...services]
+  return (
+    <div className="bg-[#FF6B00] py-3.5 overflow-hidden relative z-10">
+      <div
+        className="flex w-max"
+        style={{ animation: "marquee 32s linear infinite" }}
+      >
+        {items.map((service, i) => (
+          <div key={i} className="flex items-center flex-shrink-0">
+            <span className="font-display font-bold text-[13px] sm:text-sm uppercase tracking-[0.2em] text-white px-5 sm:px-7 whitespace-nowrap">
+              {service}
+            </span>
+            <span className="text-white/30 font-bold text-base select-none">✳</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ─── Verticals Section ────────────────────────────────────────────────────
 const verticals = [
   {
@@ -534,6 +568,7 @@ function NewsletterSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setStatus("error"); setMsg("Please enter a valid email address."); return }
+    if (!import.meta.env.VITE_WEB3FORMS_KEY) { setStatus("error"); setMsg("Something went wrong. Please try again."); return }
     setStatus("idle")
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -607,6 +642,7 @@ export default function LandingPage() {
       <Header />
       <WhatsAppButton />
       <HeroSection />
+      <ServicesTicker />
       <VerticalsSection />
       <PortfolioSection />
       <ClientLogosSection />

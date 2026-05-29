@@ -334,6 +334,10 @@ export default function Header() {
                 Blog
               </Link>
 
+              <Link to="/contact" className={`nav-link font-medium text-[13px] lg:text-sm whitespace-nowrap transition-colors duration-300 ${isScrolled ? 'text-gray-700 hover:text-[#FF6B00]' : 'text-white/80 hover:text-white'}`}>
+                Contact
+              </Link>
+
               <button
                 onClick={() => setBookingOpen(true)}
                 className="btn-shine font-semibold rounded-full transition-all duration-300 hover:scale-105 active:scale-95 whitespace-nowrap flex-shrink-0"

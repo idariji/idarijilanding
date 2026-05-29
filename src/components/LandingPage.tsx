@@ -1,5 +1,6 @@
 ﻿"use client"
 import React, { useState, useEffect, useRef, useMemo } from "react"
+import { Link } from "react-router-dom"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import {
   ArrowRight, ArrowUpRight, Globe, Shield,
@@ -555,6 +556,15 @@ function CTASection() {
             <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-3 border border-white/20 text-white/75 hover:text-white hover:border-white/40 rounded-full font-bold text-sm sm:text-base transition-all duration-300 w-full sm:w-auto" style={{ padding: "15px 36px", background: "rgba(255,255,255,0.05)" }}>
               <MessageCircle size={16} className="text-green-400 flex-shrink-0" /> Chat on WhatsApp
             </a>
+          </div>
+          <div className="flex items-center justify-center gap-6 mt-6">
+            <Link to="/about" className="text-white/40 hover:text-white/70 text-sm transition-colors duration-200">
+              About Us
+            </Link>
+            <span className="text-white/20 text-xs">·</span>
+            <Link to="/contact" className="text-white/40 hover:text-white/70 text-sm transition-colors duration-200">
+              Send a Message
+            </Link>
           </div>
         </Reveal>
       </div>
